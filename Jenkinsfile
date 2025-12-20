@@ -4,8 +4,8 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building Docker image...'
-                sh 'docker build -t peninaapp:latest .'
-                }
+                sh 'docker build -t jenkins-pipeline-lab-bordeichuk:latest .'
+            }
         }
         stage('Test') {
             steps {
@@ -20,8 +20,8 @@ pipeline {
                     usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
 
                     sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
-                    sh 'docker tag peninaapp:latest $DOCKER_USER/peninaapp:latest'
-                    sh 'docker push $DOCKER_USER/peninaapp:latest'
+                    sh 'docker tag jenkins-pipeline-lab-bordeichuk:latest $DOCKER_USER/jenkins-pipeline-lab-bordeichuk:latest'
+                    sh 'docker push $DOCKER_USER/jenkins-pipeline-lab-bordeichuk:latest'
                 }
             }
         }
